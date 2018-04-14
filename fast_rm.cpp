@@ -43,7 +43,8 @@ int MakePathA(char *dir, int dir_len, const char *file)
 		if (dir_len >= 2 && IsDBCSLeadByte(dir[dir_len -2]) == FALSE)
 			separetor = FALSE;
 		else {
-			for (u_char *p=(u_char *)dir; *p && p[1]; IsDBCSLeadByte(*p) ? p+=2 : p++)
+			u_char *p = NULL;
+			for (p=(u_char *)dir; *p && p[1]; IsDBCSLeadByte(*p) ? p+=2 : p++)
 				;
 			if (*p == '\\')
 				separetor = FALSE;
