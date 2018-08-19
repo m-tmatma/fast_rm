@@ -12,5 +12,6 @@ mkdir %BUILDDIR%
 cd    %BUILDDIR%
 
 cmake ..
-cmake --build .
+cmake --build . --config Release
+cmake --build . --config Debug
 cd ..
