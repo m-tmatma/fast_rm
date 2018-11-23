@@ -8,10 +8,15 @@ for /l %%n in (1,1,10) do (
 	)
 )
 @echo on
-mkdir %BUILDDIR%
-cd    %BUILDDIR%
 
-cmake ..
-cmake --build . --config Release
-cmake --build . --config Debug
-cd ..
+set ARCH=Win32 x64
+for %%i in (%ARCH%) do (
+	cd /d %~dp0
+	mkdir %BUILDDIR%\%%i
+	cd    %BUILDDIR%\%%i
+
+	cmake -A %%i %~dp0
+	cmake --build . --config Release
+	cmake --build . --config Debug
+	cd /d %~dp0
+)
